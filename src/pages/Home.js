@@ -1,7 +1,12 @@
+import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+
 import HomePost from '../components/main/HomePost'
 import StoryBar from '../components/main/StoryBar'
 import Suggestion from '../components/secondary/Suggestion'
 
+// Dummy
 import me from "../assets/me.jpeg"
 import daniel from "../assets/dummies/daniel-dummy.jpeg"
 import baby from "../assets/dummies/baby-dummy.jpeg"
@@ -11,6 +16,7 @@ import chris from "../assets/dummies/cb-dummy.jpeg"
 import china from "../assets/dummies/yummy-dummy.jpeg"
 
 const Home = () => {
+  const navigate = useNavigate();
 
   const items = [
     {
@@ -121,6 +127,26 @@ const suggestion3 = {
   button : "Follow"
 }
 
+  // Effects
+  useEffect(()=>{
+      getStories();
+      getReccomendations();
+      getPosts();
+  },[])
+
+  // Functions
+  const getStories = async() => {
+
+  };
+
+  const getReccomendations = async() => {
+
+  };
+
+  const getPosts = async() => {
+
+  };
+
 
   return (
     <div className='d-flex flex-row justify-content-center p-4'>
@@ -148,7 +174,7 @@ const suggestion3 = {
             {/* Suggestion */}
               <div className='d-flex flex-row justify-content-between align-items-center mt-3 mb-1'>
                  <p style={{color:"#8e8e8e",fontWeight:600}}>Suggestions For You</p>
-                 <p style={{fontWeight:600, cursor:"pointer"}}>See All</p>
+                 <p style={{fontWeight:600, cursor:"pointer"}} onClick={()=>{navigate("/suggestions")}}>See All</p>
               </div>
 
             {/* List */}

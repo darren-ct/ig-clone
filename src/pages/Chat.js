@@ -1,3 +1,17 @@
+import { useEffect } from 'react';
+import {useDispatch,useSelector} from 'react-redux'
+
+import ChatBody from '../components/secondary/ChatBody';
+import MessageBody from '../components/secondary/MessageBody';
+
+import emo from "../assets/emo.png";
+import like from "../assets/notlike.png";
+import image from "../assets/image.png";
+import info from '../assets/info.png'
+import phone from '../assets/phone.png'
+import video from '../assets/vcall.png'
+
+// DUMMY
 import me from '../assets/me.jpeg'
 import daniel from "../assets/dummies/daniel-dummy.jpeg"
 import baby from "../assets/dummies/baby-dummy.jpeg"
@@ -7,16 +21,6 @@ import chris from "../assets/dummies/cb-dummy.jpeg"
 import china from "../assets/dummies/yummy-dummy.jpeg"
 
 
-import emo from "../assets/emo.png";
-import like from "../assets/notlike.png";
-import image from "../assets/image.png";
-
-import info from '../assets/info.png'
-import phone from '../assets/phone.png'
-import video from '../assets/vcall.png'
-
-import ChatBody from '../components/secondary/ChatBody';
-import MessageBody from '../components/secondary/MessageBody';
 
 const chatlist = [
     {
@@ -103,6 +107,23 @@ const messageList = [
 ]
 
 const Chat = () => {
+  const dispatch = useDispatch();
+
+  // useEffect
+  useEffect(()=>{
+    getChats()
+    getMessages()
+  },[]);
+
+  // Functions
+  const getChats = async() => {
+
+  };
+
+  const getMessages = async() => {
+
+  };
+
   return (
     <div className='container-lg p-4' style={{height:'calc(100vh - 66px)'}}>
 

@@ -1,3 +1,8 @@
+import { useDispatch,useSelect } from "react-redux/es/exports";
+import { useEffect } from "react";
+
+
+// Dummy
 import me from "../assets/me.jpeg"
 import daniel from "../assets/dummies/daniel-dummy.jpeg"
 import baby from "../assets/dummies/baby-dummy.jpeg"
@@ -17,6 +22,18 @@ const items = [
 ]
 
 const Explore = () => {
+  const dispatch = useDispatch()
+
+  // Effects
+  useEffect(()=>{
+      getPosts()
+  },[]);
+
+  // Functions
+  const getPosts = async() => {
+   
+  };
+
   return (
     <div className='container-lg py-4'>
            <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gridGap:16}}>

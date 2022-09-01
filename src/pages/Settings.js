@@ -12,8 +12,11 @@ const Settings = () => {
                   
                 {/* Left */}
                 <div style={{flex:1,borderColor:"#8e8e8e",height:"100%"}} className="px-4 py-4 border-end">
-                      <p style={{fontSize:16,fontWeight:500,marginLeft:6,cursor:"pointer"}} onClick={()=>{setLocation("profile")}}>Edit profile</p>
-                      <p style={{fontSize:16,fontWeight:400,marginLeft:6,cursor:"pointer"}} onClick={()=>{setLocation("password")}}>Change password</p>
+                      <p style={location === "profile" ? {fontSize:16,fontWeight:500,marginLeft:6,cursor:"pointer"} : 
+                      {fontSize:16,fontWeight:300,marginLeft:6,cursor:"pointer"} } onClick={()=>{setLocation("profile")}}>Edit profile</p>
+                      
+                      <p style={location === "password" ? {fontSize:16,fontWeight:500,marginLeft:6,cursor:"pointer"} : 
+                      {fontSize:16,fontWeight:300,marginLeft:6,cursor:"pointer"} } onClick={()=>{setLocation("password")}}>Change password</p>
                 </div>
 
                 {/* Right */}

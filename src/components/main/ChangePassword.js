@@ -11,17 +11,17 @@ const ChangePassword = () => {
 
                     <div className='d-flex flex-column mb-4'>
                          <span style={{fontSize:16,fontWeight:"bold"}} className="mb-1">Old Password</span>
-                         <input type="text" className='border py-2 px-4'/>
+                         <input type="password" className='border py-2 px-4'/>
                     </div>
 
                     <div className='d-flex flex-column mb-4'>
                          <span style={{fontSize:16,fontWeight:"bold"}} className="mb-1">New Password</span>
-                         <input type="text" className='border py-2 px-4'/>
+                         <input type="password" className='border py-2 px-4'/>
                     </div>
 
                     <div className='d-flex flex-column mb-4'>
                          <span style={{fontSize:16,fontWeight:"bold"}} className="mb-1">Reenter New Password</span>
-                         <input type="text" className='border py-2 px-4'/>
+                         <input type="password" className='border py-2 px-4'/>
                     </div>
 
                     <div className='d-flex flex-row justify-content-center align-items-center'>

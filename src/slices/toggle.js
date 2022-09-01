@@ -5,7 +5,7 @@ const toggleSlice = createSlice({
     initialState: {
         logoDrop : false,
         searchDrop : false,
-        likesDrop : false,
+        notifDrop : false,
         postModal : false,
         iconDrop : false
     },
@@ -19,7 +19,7 @@ const toggleSlice = createSlice({
         },
 
         toggleLikes(state){
-            state.likesDrop = !state.likesDrop
+            state.notifDrop = !state.notifDrop
         },
 
         toggleIcon(state){

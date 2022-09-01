@@ -1,9 +1,13 @@
-import me from "../assets/me.jpeg"
+import { useEffect, useState } from "react"
+import { useNavigate } from "react-router-dom"
+import { useDispatch,useSelect } from "react-redux"
 
 import setting from '../assets/settings.png'
 import grid from '../assets/grid.png'
 import save from '../assets/save.png'
 
+// Dummy
+import me from "../assets/me.jpeg"
 import daniel from "../assets/dummies/daniel-dummy.jpeg"
 import baby from "../assets/dummies/baby-dummy.jpeg"
 import sleepy from "../assets/dummies/sleepy-dummy.jpeg"
@@ -50,8 +54,33 @@ const items2 = [
 ];
 
 const Profile = () => {
+  const navigate = useNavigate();
+  const isMyProfile = true;
+
+  // States
+  const [filter,setFilter] = useState("posts");
+
+  // useEffects
+  useEffect(()=>{
+      getPosts();
+  },[filter])
+
+  useEffect(()=>{
+    getProfile();
+},[])
+
+  // Functions
+  const getPosts = async() => {
+
+  };
+
+  const getProfile = async() => {
+
+  }
+
   return (
     <div className='container-lg d-flex flex-column align-items-start p-4'>
+
         {/* Profile */}
           <div className='d-flex flex-row align-items-center pt-4 mb-4'>
                <img src={me} style={{width:180,height:180,borderRadius:'100vw',border:"1px solid #efefef", margin:"0 160px"}}/>
@@ -59,14 +88,25 @@ const Profile = () => {
                <div className='d-flex flex-column'>
                     <div className='d-flex flex-row align-items-start mb-4'>
                          <span style={{fontSize:28,fontWeight:400}}>darrens_portfolio</span>
-                         <button className="ms-4 me-4 border py-1 px-2 rounded bg-transparent" style={{borderColor:'#efefef'}}>Edit profile</button>
-                         <img src={setting} width={24} />
+
+                         {isMyProfile ? 
+                         <>
+                         <button className="ms-4 me-4 border py-1 px-2 rounded bg-transparent" style={{borderColor:'#efefef'}} onClick={()=>{navigate("/settings")}}>Edit profile</button> 
+                         <img src={setting} width={24} style={{cursor:"pointer"}} onClick={()=>{navigate("/settings")}}/>
+                         </> :
+
+                         <>
+                         <button className="ms-4 border py-1 px-2 rounded bg-transparent" style={{borderColor:'#efefef',fontWeight:600}} onClick={()=>{navigate("/settings")}}>Message</button> 
+                         <button className="ms-2 border py-1 px-4 rounded text-white" style={{background:'#0095f6',fontWeight:600}}>Follow</button>
+                         </>
+                         }
+                         
                     </div>
 
                     <div className='d-flex flex-row align-items-center mb-4'>
-                        <span style={{fontSize:16}}><b>18</b> posts</span>
-                        <span style={{fontSize:16}} className="mx-4"><b>169</b> followers</span>
-                        <span style={{fontSize:16}}><b>307</b> following</span>
+                        <span style={{fontSize:16,cursor:"pointer"}}><b>18</b> posts</span>
+                        <span style={{fontSize:16,cursor:"pointer"}} className="mx-4"><b>169</b> followers</span>
+                        <span style={{fontSize:16,cursor:"pointer"}}><b>307</b> following</span>
                     </div>
                     
                     <span style={{fontWeight:600,fontSize:16}}>Darren's Fullstack Portfolio</span>
@@ -77,8 +117,6 @@ const Profile = () => {
                     </p>
                     <a style={{fontSize:16,fontWeight:600,color:"#00376b"}}>www.linkedin.com/in/darren-christian-t</a>
                </div>
-
-
 
           </div>
 
@@ -100,18 +138,23 @@ const Profile = () => {
 
         {/* Filter */}
           <div style={{width:"100%",borderColor:"#efefef"}} className="d-flex flex-row align-items-center justify-content-center mt-4 mb-4 border-top">
-               <div className="d-flex flex-row align-items-center pt-4" style={{cursor:"pointer",marginRight:64,borderTop:"1px solid #262626"}}>
+               {/* Posts */}
+               <div className="d-flex flex-row align-items-center pt-4 me-4" onClick={()=>{setFilter("posts")}} 
+               style={!isMyProfile ? {cursor:"pointer", marginRight:64, borderTop:"1px solid #262626"} : 
+               filter === "posts" ? {cursor:"pointer", borderTop:"1px solid #262626", fontWeight: 700} : {cursor:"pointer"}}>
                    <img width={24} src={grid} />
                    <span className="ms-2">POSTS</span>
                </div>
-
-               <div className="d-flex flex-row align-items-center pt-4" style={{cursor:"pointer"}}>
+               {/* Saved */}
+              { isMyProfile && 
+              <div className="d-flex flex-row align-items-center pt-4 ms-4" onClick={()=>{setFilter("saved")}} 
+              style={filter === "saved" ? {cursor:"pointer", fontWeight: 700, borderTop:"1px solid #262626"} : {cursor:"pointer"}}>
                    <img width={20} src={save}/>
                    <span className="ms-2">SAVED</span>
-               </div>
+               </div> 
+              }
           </div>
-          
-
+        
         {/* Grid */}
         <div style={{display:"grid",gridTemplateColumns:"1fr 1fr 1fr",gridGap:16}}>
                 {items.map(item => <Post item={item}/>)}

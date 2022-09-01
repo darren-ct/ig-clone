@@ -12,6 +12,11 @@ body{
   background-color: #FAFAFA;
 }
 
+.hide-scroll{
+  overflow-y: hidden;
+}
+
+/* Form related */
 input{
   outline: none;
   appearance: none;
@@ -29,6 +34,7 @@ button{
   border: none;
 }
 
+/* Nav */
 .active-nav{
    color:#262626 ;
 }
@@ -37,11 +43,3 @@ button{
    color: #8e8e8e;
 }
 
-/* .hide-bar {
-  -ms-overflow-style: none;  
-  scrollbar-width: none;  
-}
-
-.hide-bar::-webkit-scrollbar { 
-  display: none;  
-} */
