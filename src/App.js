@@ -20,6 +20,7 @@ import Saved from './pages/Saved';
 
 function App() {
   const user = useSelector(state => state.user);
+  // const user = {token:"od0ej2m"}
   const token = user ? user.token : null;
 
   //  UseEffect

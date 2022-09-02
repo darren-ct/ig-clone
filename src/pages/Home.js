@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
 
 import HomePost from '../components/main/HomePost'
 import StoryBar from '../components/main/StoryBar'
 import Suggestion from '../components/secondary/Suggestion'
+import List from "../components/modal/List";
 
 // Dummy
 import me from "../assets/me.jpeg"
@@ -17,8 +17,34 @@ import china from "../assets/dummies/yummy-dummy.jpeg"
 
 const Home = () => {
   const navigate = useNavigate();
+  
 
   const items = [
+    {
+      image : daniel,
+      username : "Daniel" ,
+      isSeenAll :  true
+    },
+    {
+      image : daniel,
+      username : "Daniel" ,
+      isSeenAll :  true
+    },
+    {
+      image : daniel,
+      username : "Daniel" ,
+      isSeenAll :  true
+    },
+    {
+      image : daniel,
+      username : "Daniel" ,
+      isSeenAll :  true
+    },
+    {
+      image : daniel,
+      username : "Daniel" ,
+      isSeenAll :  true
+    },
     {
       image : daniel,
       username : "Daniel" ,
@@ -109,23 +135,23 @@ const Home = () => {
     connection_name : "enzo",
     connection_number : 19,
     button : "Follow"
-}
+  }
 
-const suggestion2 = {
+  const suggestion2 = {
   image : baby,
   username : "Baby",
   connection_name : "enzo",
   connection_number : 19,
   button : "Follow"
-}
+  }
 
-const suggestion3 = {
+   const suggestion3 = {
   image : daniel,
   username : "Daniel",
   connection_name : "enzo",
   connection_number : 19,
   button : "Follow"
-}
+   }
 
   // Effects
   useEffect(()=>{
@@ -147,16 +173,15 @@ const suggestion3 = {
 
   };
 
-
   return (
     <div className='d-flex flex-row justify-content-center p-4'>
         <div style={{width:470}} className="d-flex flex-column me-4">
               <StoryBar items={items}/>
       
               <HomePost item={item3}/>
-              <HomePost item={item1}/>
+              {/* <HomePost item={item1}/>
               <HomePost item={item2}/>
-              <HomePost item={item}/>
+              <HomePost item={item}/> */}
         </div>
 
         <div style={{width:350}} className='d-flex flex-column p-4'>

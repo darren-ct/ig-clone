@@ -1,4 +1,5 @@
 import {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 
 import liked from '../../assets/like.png'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
@@ -7,10 +8,12 @@ import {  faMessage } from '@fortawesome/free-solid-svg-icons'
 import Stack from '../../assets/stack'
 
 const Post = ({item}) => {
+  const navigate = useNavigate();
+
   const[hover,setHover] = useState(false);
 
   return (
-    <div className='position-relative' style={{height:'28vw',cursor:"pointer"}} onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>
+    <div className='position-relative' style={{height:'28vw',cursor:"pointer"}} onClick={()=>{navigate(`/details/${item.post_id}`)}} onMouseEnter={()=>{setHover(true)}} onMouseLeave={()=>{setHover(false)}}>
         <img src={item.image} style={{width:"100%",height:"100%",objectFit:"cover"}}/>
         {item.isMultiple && <Stack />}
         <div className='position-absolute left-0 top-0 d-flex flex-row justify-content-center align-items-center' 

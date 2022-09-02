@@ -12,6 +12,7 @@ function NewPost() {
 
   const dispatch = useDispatch();
 
+  // States
   const isPostModal = useSelector(state => state.toggle.postModal);
   const[image,setImage] = useState(null);
   const[form,setForm] = useState({
@@ -79,7 +80,7 @@ function NewPost() {
 
                <div className="d-flex flex-column align-items-center justify-content-center p-4" style={{flex:1}}>
                     <img src={photo} width={64}/>
-                    <div style={{fontSize:22,fontWeight:300}} className="my-2">Add new posts here</div>
+                    <div style={{fontSize:22,fontWeight:300}} className="my-3">Add new posts here</div>
                     <label htmlFor="uploadpost" className="px-3 py-2 text-white rounded" style={{background:"#0095f6",cursor:"pointer",fontWeight:600}}>Select from computer</label>
                     <input onChange={onSelect} type="file" style={{visibility:"hidden"}} id="uploadpost"/>
                </div> : 

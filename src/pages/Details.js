@@ -1,12 +1,14 @@
-import { useEffect } from "react";
-import { useDispatch,useSelector} from "react-redux";
+import { useEffect, useState } from "react";
+import { listActions } from "../slices/list";
 
 import Post from "../components/main/Post";
 import Comment from "../components/secondary/Comment";
+import List from "../components/modal/List";
+import Pop from "../components/modal/Pop";
+
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import { faListDots } from '@fortawesome/free-solid-svg-icons'
-
 
 import liked from '../assets/like.png';
 import like from '../assets/notlike.png';
@@ -15,7 +17,6 @@ import saved from '../assets/saved.png';
 import send from '../assets/send.png';
 import comments from '../assets/comments.png';
 import emo from '../assets/emo.png';
-
 
 // dummy
 import me from '../assets/me.jpeg';
@@ -164,7 +165,10 @@ const commentsitem = [
 ]
 
 const Details = () => {
-  const dispatch = useDispatch();
+
+  // useState
+  const[modal,setModal] = useState(false);
+  const[modal2,setModal2] = useState(false);
 
   // useEffect
   useEffect(()=>{
@@ -183,19 +187,21 @@ const Details = () => {
 
   return (
     <div className="container-lg d-flex flex-column justify-content-start align-items-center p-4">
+        {modal && <List content="Likes" setModal={setModal} />}
+        {modal2 && <Pop id={1} setModal={setModal2}/>}
         {/* Details */}
-         <div className="d-flex flex-row bg-white border mb-4" style={{borderColor:"#efefef"}} width={600} height={600}>
-             <img src={me} width="65%"/>
-             <div className="d-flex flex-column border-start" width="35%" style={{borderColor:"#efefef"}}>
+         <div className="d-flex flex-row align-items-start bg-white border mb-4" style={{borderColor:"#efefef"}} width={600} height={600}>
+             <img src={me} width="65%" height="100%"/>
+             <div className="d-flex flex-column justify-content-start border-start" width="35%" height="100%" style={{borderColor:"#efefef"}}>
                  {/* Head */}
                   <div className="d-flex flex-row align-items-center border-bottom p-4" style={{borderColor:"#efefef"}}>
                        <img src={me} style={{width:36,height:36,borderRadius:'100vw',border:'1px solid #efefef'}} />
                        <span className="ms-4 flex-fill">loker.programmer<b> - Following</b></span>
-                       <span style={{cursor:"pointer"}}><FontAwesomeIcon icon={faListDots}/></span>
+                       <span style={{cursor:"pointer"}} onClick={()=>{setModal2(true)}}><FontAwesomeIcon icon={faListDots}/></span>
                   </div>
 
                  {/* Comment */}
-                 <div className="flex-fill" style={{overflowY:"scroll"}}>
+                 <div className="flex-fill" style={{overflowY:"scroll",height:435}}>
                       <div className="d-flex flex-column">
                           {commentsitem.map(comment => <Comment item={comment}/>)}
                       </div>
@@ -209,7 +215,7 @@ const Details = () => {
                          <img src={send} width={24} height={24} style={{cursor:"pointer"}}/>
                          <img src={save} width={20} height={20} style={{position:"absolute",right:0,top:4,cursor:"pointer"}}/>
                       </div>
-                      <div className="mt-3">Liked by <b>30 others</b></div>
+                      <div className="mt-3" style={{cursor:"pointer"}} onClick={()=>{setModal(true)}}>Liked by <b>30 others</b></div>
                       <div style={{fontSize:10,color:"#8e8e8e",fontWeight:300}}>4 hours ago</div>
                  </div>
 

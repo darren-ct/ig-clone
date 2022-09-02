@@ -1,6 +1,9 @@
 import { useEffect, useState } from "react"
 import { useNavigate } from "react-router-dom"
-import { useDispatch,useSelect } from "react-redux"
+
+import {listActions} from "../slices/list";
+
+import List from "../components/modal/List";
 
 import setting from '../assets/settings.png'
 import grid from '../assets/grid.png'
@@ -55,10 +58,14 @@ const items2 = [
 
 const Profile = () => {
   const navigate = useNavigate();
+  
   const isMyProfile = true;
 
   // States
   const [filter,setFilter] = useState("posts");
+  const [content,setContent] = useState(null);
+  const [modal,setModal] = useState(false);
+
 
   // useEffects
   useEffect(()=>{
@@ -66,8 +73,12 @@ const Profile = () => {
   },[filter])
 
   useEffect(()=>{
+       if(content) setModal(true)
+  },[content])
+
+  useEffect(()=>{
     getProfile();
-},[])
+  },[])
 
   // Functions
   const getPosts = async() => {
@@ -76,10 +87,11 @@ const Profile = () => {
 
   const getProfile = async() => {
 
-  }
+  };
 
   return (
     <div className='container-lg d-flex flex-column align-items-start p-4'>
+        {modal && content ? <List content={content} setModal={setModal}/> : ""}
 
         {/* Profile */}
           <div className='d-flex flex-row align-items-center pt-4 mb-4'>
@@ -105,8 +117,8 @@ const Profile = () => {
 
                     <div className='d-flex flex-row align-items-center mb-4'>
                         <span style={{fontSize:16,cursor:"pointer"}}><b>18</b> posts</span>
-                        <span style={{fontSize:16,cursor:"pointer"}} className="mx-4"><b>169</b> followers</span>
-                        <span style={{fontSize:16,cursor:"pointer"}}><b>307</b> following</span>
+                        <span style={{fontSize:16,cursor:"pointer"}} className="mx-4" onClick={()=>{setContent("Followers")}}><b>169</b> followers</span>
+                        <span style={{fontSize:16,cursor:"pointer"}} onClick={()=>{setContent("Followings")}}><b>307</b> following</span>
                     </div>
                     
                     <span style={{fontWeight:600,fontSize:16}}>Darren's Fullstack Portfolio</span>

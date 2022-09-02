@@ -13,7 +13,13 @@ import china from "../assets/dummies/yummy-dummy.jpeg"
 import Post from "../components/main/Post"
 
 const items = [
-  {image:daniel,likes:12,comments:12,isMultiple:true},
+  {image:daniel,
+    caption:"WOW",
+    likes:12,
+    comments:12,
+    isMultiple:true,
+  
+  },
   {image:sleepy,likes:0,comments:1,isMultiple:false},
   {image:baby,likes:1222,comments:123,isMultiple:false},
   {image:dog,likes:2,comments:0,isMultiple:false},
